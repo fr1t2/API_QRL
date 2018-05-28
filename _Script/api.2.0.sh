@@ -5,10 +5,14 @@
 ## update the QRL repo
 cd ${HOME}/repo/qrl/
 git pull
+
 ## update the QRL/integration_tests repo
-cd ${HOME}/repo/integration_tests
+cd ${HOME}/repo/integration_tests/
 git pull
 
+## update the API_QRL repo
+cd ${HOME}/API_QRL/
+git pull
 
 ## Move the proto file to our working directory
 rsync -azPv ${HOME}/repo/qrl/src/qrl/protos/*.proto ${HOME}/API_QRL/_QRL/proto/
