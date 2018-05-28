@@ -10,35 +10,31 @@
 #git reset --hard origin/QRL
 #git pull
 
+# Get the files we are interested in
 ## update the QRL repo
-cd ${HOME}/API_QRL/QRL/qrl/
+cd ${HOME}/repo/qrl/
 git pull
 ## update the QRL/integration_tests repo
-cd ${HOME}/API_QRL/QRL/integration_tests
+cd ${HOME}/repo/integration_tests
 git pull
 
 
 ## Move the proto file to our working directory
-rsync -azPv ${HOME}/API_QRL/QRL/qrl/src/qrl/protos/qrl.proto ${HOME}/manualAPI/examples/proto/
+rsync -azPv ${HOME}/repo/qrl/src/qrl/protos/qrl.proto ${HOME}/API_QRL/_QRL/proto/
 
 
 ## Generate the docs from the .proto files using protoc-gen-doc
-docker run --rm -v ${HOME}/manualAPI/examples/doc:/out -v ${HOME}/manualAPI/examples/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
-
-docker run --rm -v ${HOME}/manualAPI/examples/doc:/out -v ${HOME}/manualAPI/examples/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=json,docs.json
-
-docker run --rm -v ${HOME}/manualAPI/examples/doc:/out -v ${HOME}/manualAPI/examples/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=html,docs.html
-
-docker run --rm -v ${HOME}/manualAPI/examples/doc:/out -v ${HOME}/manualAPI/examples/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=docbook,docs.xml
-
-
+docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
+#docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=json,docs.json
+#docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=html,docs.html
+#docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=docbook,docs.xml
 
 ### Pull out any ### to <a name in the docs.md file and strip the <a name> tag
 
 #sed -n '/###/,/a name/p' ${HOME}/manualAPI/examples/doc/docs.md > ${HOME}/manualAPI/examples/doc/out.txt
 
 # change "### to ##" and "## to #"
-sed -i -e 's/##/#/g' ${HOME}/manualAPI/examples/doc/docs.md
+sed -i -e 's/##/#/g' ${HOME}/API_QRL/_QRL/doc/docs.md
 
 
 # strip everything before # qrl.proto
