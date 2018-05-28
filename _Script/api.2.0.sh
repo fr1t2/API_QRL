@@ -27,7 +27,7 @@ docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:
 #docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=html,docs.html
 #docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=docbook,docs.xml
 echo "Proto-Doc-Gen Ran file located at /API_QRL/_QRL/proto/"
-
+echo ""
 ### Pull out any ### to <a name in the docs.md file and strip the <a name> tag
 
 #sed -n '/###/,/a name/p' ${HOME}/manualAPI/examples/doc/docs.md > ${HOME}/manualAPI/examples/doc/out.txt
@@ -35,10 +35,10 @@ echo "Proto-Doc-Gen Ran file located at /API_QRL/_QRL/proto/"
 echo " change ### to ## and ## to #"
 sed -i -e 's/##/#/g' ${HOME}/API_QRL/_QRL/doc/docs.md
 
-
+echo ""
 echo "strip everything before # qrl.proto "
 sed '/# qrl.proto/,$!d' ${HOME}/API_QRL/_QRL/doc/docs.md > ${HOME}/API_QRL/_QRL/doc/out1.txt 
-
+echo ""
 echo " Add blank line to beginning of file"
 sed -s -i '1i\\' ${HOME}/API_QRL/_QRL/doc/out1.txt
 
