@@ -12,53 +12,56 @@
 
 # Get the files we are interested in
 ## update the QRL repo
-cd ${HOME}/repo/qrl/
-git pull
+#cd ${HOME}/repo/qrl/
+#git pull
 ## update the QRL/integration_tests repo
-cd ${HOME}/repo/integration_tests
-git pull
+#cd ${HOME}/repo/integration_tests
+#git pull
 
 
 ## Move the proto file to our working directory
 rsync -azPv ${HOME}/repo/qrl/src/qrl/protos/*.proto ${HOME}/API_QRL/_QRL/proto/
-
+echo "Moved proto Files"
 ## Move the test.js file to our working directory
 rsync -azPv ${HOME}/repo/integration_tests/tests/js/* ${HOME}/API_QRL/_QRL/tests/
+echo "Moved test Files"
 
 ## Generate the docs from the .proto files using protoc-gen-doc
 docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
 #docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=json,docs.json
 #docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=html,docs.html
 #docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=docbook,docs.xml
+echo "Proto-Doc-Gen Ran file located at /API_QRL/_QRL/proto/"
 
 ### Pull out any ### to <a name in the docs.md file and strip the <a name> tag
 
 #sed -n '/###/,/a name/p' ${HOME}/manualAPI/examples/doc/docs.md > ${HOME}/manualAPI/examples/doc/out.txt
 
-# change "### to ##" and "## to #"
+echo " change ### to ## and ## to #"
 sed -i -e 's/##/#/g' ${HOME}/API_QRL/_QRL/doc/docs.md
 
 
-# strip everything before # qrl.proto
+echo "strip everything before # qrl.proto "
 sed '/# qrl.proto/,$!d' ${HOME}/API_QRL/_QRL/doc/docs.md > ${HOME}/API_QRL/_QRL/doc/out1.txt 
 
-# Add blank line to beginning of file
+echo " Add blank line to beginning of file"
 sed -s -i '1i\\' ${HOME}/API_QRL/_QRL/doc/out1.txt
 
+echo "Remove the a name tag, #Table , <p> and #Prot from file"
 grep -vE "(<a name|# Table|<p|# Prot)" ${HOME}/API_QRL/_QRL/doc/out1.txt > ${HOME}/API_QRL/_QRL/doc/out2.txt
 
 ## converg front matter and API docs file
-cat ${HOME}/repo/slate/front.txt ${HOME}/API_QRL/_QRL/doc/out2.txt > ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md
+cat ${HOME}/API_QRL/front.txt ${HOME}/API_QRL/_QRL/doc/out2.txt > ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md
 
 
 ### copy the index.html.md file we created into the root buld dir for slate
 cp ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md ${HOME}/API_QRL/_QRL/
 
 ## Push the docs to the late directory
-cd ${HOME}/API_QRL
-git add .
-git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_index.html.md file"
-git push
+#cd ${HOME}/API_QRL
+#git add .
+#git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_index.html.md file"
+#git push
 
 ## Build the site
 #cd ${HOME}/repo/slate
