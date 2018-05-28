@@ -370,7 +370,7 @@ describe('GetObject - AddressState', function() {
 This function will give multiple responses
 
 
-#### result property
+result property
 
 ```javascript
     it('GetObjectResp has correct *result* property', function(){
@@ -380,7 +380,7 @@ This function will give multiple responses
     });
 ```
 
-#### found property
+found property
 
 ```javascript
     it('GetObjectResp has correct *found* property', function(){
@@ -389,7 +389,7 @@ This function will give multiple responses
     });
 ```
 
-#### transaction property
+transaction property
 
 ```javascript    
     it('GetObjectResp has correct *transaction* property', function(){
@@ -397,7 +397,8 @@ This function will give multiple responses
         expect(response.transaction).to.equal(null);
     });
 ```
-#### block_extended property
+
+ block_extended property
 
 ```javascript    
     it('GetObjectResp has correct *block_extended* property', function(){
@@ -405,7 +406,8 @@ This function will give multiple responses
         expect(response.block_extended).to.equal(null);
     });
 ```
-#### address_state property
+
+address_state property
 
 ```javascript    
     it('GetObjectResp has correct *address_state* property', function(){
@@ -414,7 +416,7 @@ This function will give multiple responses
     });
 ```
 
-#### AdressState.address property
+AdressState.address property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.address* property', function(){
@@ -424,7 +426,7 @@ This function will give multiple responses
     });
 ```
 
-#### AdressState.balance property
+AdressState.balance property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.balance* property', function(){
@@ -434,7 +436,7 @@ This function will give multiple responses
     });
 ```
 
-#### AdressState.nonce property
+AdressState.nonce property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.nonce* property', function(){
@@ -444,7 +446,7 @@ This function will give multiple responses
     });
 ```
 
-#### AdressState.ots_counter property
+AdressState.ots_counter property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.ots_counter* property', function(){
@@ -454,7 +456,7 @@ This function will give multiple responses
     });
 ```
 
-#### AdressState.ots_bitfield property
+AdressState.ots_bitfield property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.ots_bitfield* property', function(){
@@ -463,7 +465,7 @@ This function will give multiple responses
     });
 ```
 
-#### AdressState.transaction_hashes property
+ AdressState.transaction_hashes property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.transaction_hashes* property', function(){
