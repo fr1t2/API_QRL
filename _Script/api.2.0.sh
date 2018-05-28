@@ -20,8 +20,10 @@ git pull
 
 
 ## Move the proto file to our working directory
-rsync -azPv ${HOME}/repo/qrl/src/qrl/protos/qrl.proto ${HOME}/API_QRL/_QRL/proto/
+rsync -azPv ${HOME}/repo/qrl/src/qrl/protos/*.proto ${HOME}/API_QRL/_QRL/proto/
 
+## Move the test.js file to our working directory
+rsync -azPv ${HOME}/repo/integration_tests/tests/js/* ${HOME}/API_QRL/_QRL/tests/
 
 ## Generate the docs from the .proto files using protoc-gen-doc
 docker run --rm -v ${HOME}/API_QRL/_QRL/doc:/out -v ${HOME}/API_QRL/_QRL/proto/:/protos   pseudomuto/protoc-gen-doc --doc_opt=markdown,docs.md
@@ -38,24 +40,24 @@ sed -i -e 's/##/#/g' ${HOME}/API_QRL/_QRL/doc/docs.md
 
 
 # strip everything before # qrl.proto
-sed '/# qrl.proto/,$!d' ${HOME}/manualAPI/examples/doc/docs.md > ${HOME}/manualAPI/examples/doc/out1.txt 
+sed '/# qrl.proto/,$!d' ${HOME}/API_QRL/_QRL/doc/docs.md > ${HOME}/API_QRL/_QRL/doc/out1.txt 
 
 # Add blank line to beginning of file
-sed -s -i '1i\\' ${HOME}/manualAPI/examples/doc/out1.txt
+sed -s -i '1i\\' ${HOME}/API_QRL/_QRL/doc/out1.txt
 
-grep -vE "(<a name|# Table|<p|# Prot)" ${HOME}/manualAPI/examples/doc/out1.txt > ${HOME}/manualAPI/examples/doc/out2.txt
+grep -vE "(<a name|# Table|<p|# Prot)" ${HOME}/API_QRL/_QRL/doc/out1.txt > ${HOME}/API_QRL/_QRL/doc/out2.txt
 
 ## converg front matter and API docs file
-cat ${HOME}/repo/slate/front.txt ${HOME}/manualAPI/examples/doc/out2.txt > ${HOME}/manualAPI/examples/doc/QRL_index.html.md
+cat ${HOME}/repo/slate/front.txt ${HOME}/API_QRL/_QRL/doc/out2.txt > ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md
 
 
 ### copy the index.html.md file we created into the root buld dir for slate
-cp ${HOME}/manualAPI/examples/doc/QRL_index.html.md ${HOME}/API_QRL/QRL/
+cp ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md ${HOME}/API_QRL/_QRL/
 
 ## Push the docs to the late directory
 cd ${HOME}/API_QRL
 git add .
-git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /QRL/QRL_index.html.md file"
+git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_index.html.md file"
 git push
 
 ## Build the site
