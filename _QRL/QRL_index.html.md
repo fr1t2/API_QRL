@@ -13,9 +13,55 @@ includes:
 
 search: true
 ---
-# qrl.proto
 
+# QRL Protocol Documentation
 
+> Something here about setting up and running the API. This is from the test.js file
+
+```javascript
+let grpc = require('grpc');
+let temp = require('temp').track();
+let fs = require("fs-extra");
+let qrllib = require('./node_modules/qrllib/build/libjsqrl.js');
+var assert = require('assert');
+var expect = require('chai').expect
+
+async function fetchRemoteProto(nodeAddr) {
+    let protoDescriptor = grpc.load('qrlbase.proto');
+    let client = new protoDescriptor.qrl.Base(nodeAddr, grpc.credentials.createInsecure());
+
+    return new Promise( (resolve) => {
+        client.getNodeInfo({}, function (err, nodeInfo) {
+            if (err) {
+                throw err;
+            }
+            let requiredFile = '/tmp/google/protobuf/timestamp.proto';
+            if (!fs.existsSync(requiredFile))
+            {
+                fs.ensureDirSync('/tmp/google/protobuf');
+                fs.copySync('timestamp.proto', requiredFile, { overwrite : true });
+            }
+            temp.open('proto', (err, info) => {
+                if (!err) {
+                    fs.write(info.fd, nodeInfo.grpcProto);
+                    fs.close(info.fd, function () {
+                        let remoteProtoDescriptor = grpc.load(info.path);
+                        resolve(remoteProtoDescriptor);
+                    });
+                }
+            });
+        });
+    });
+}
+```
+
+The QRL Protocol documentation is intended to lessen the on boarding and get developers up to speed quickly. We want you building into the protocol, not trying to learn how to read it!
+
+This is a work in progress and a such will change over time. Please make sure you are referencing the correct version of code and docs.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
 
 
 ## AddressAmount
@@ -476,6 +522,30 @@ Represents the reply message to known peers query
 
 
 ## GetNodeStateReq
+
+```javascript
+// Test for GetNodeState
+describe('GetNodeState', function() {
+    let response;
+    // call API
+    before(function() {
+        return new Promise((resolve) => {
+            qrlClient.then( function (qrlClient) {
+                qrlClient.getNodeState({}, (err, res) => {
+                    if (err){
+                        console.log("Error: ", err.message);
+                        return;
+                    }
+                    response = res;
+                    resolve();
+                });
+            });
+        });
+    });
+    
+});
+```
+
 Represents a query to get node state
 
 
@@ -485,6 +555,54 @@ Represents a query to get node state
 
 
 ## GetNodeStateResp
+
+```javascript
+it('GetNodeStateResp has NodeInfo *info* property', function(){
+        expect(response).to.have.property('info');
+    });
+    it('GetNodeStateResp.info has correct *state* property', function(){
+        expect(response.info).to.have.property('state');
+        expect(response.info.state).to.be.a('string');
+        expect(response.info.state).to.be.oneOf(['UNKNOWN', 'UNSYNCED', 'SYNCING', 'SYNCED', 'FORKED']);
+    });
+    it('GetNodeStateResp.info has correct *version* property', function(){
+        expect(response.info).to.have.property('version');
+        expect(response.info.version).to.be.a('string');
+    });
+    it('GetNodeStateResp.info has correct *num_connections* property', function(){
+        expect(response.info).to.have.property('num_connections');
+        expect(response.info.num_connections).to.be.a('number');
+        expect(response.info.num_connections).to.be.below(4294967297); // uint32
+    });
+    it('GetNodeStateResp.info has correct *num_known_peers* property', function(){
+        expect(response.info).to.have.property('num_known_peers');
+        expect(response.info.num_known_peers).to.be.a('number');
+        expect(response.info.num_known_peers).to.be.below(4294967297); // uint32
+    });
+    it('GetNodeStateResp.info has correct *uptime* property', function(){
+        expect(response.info).to.have.property('uptime');
+        expect(response.info.uptime).to.be.a('string');
+        expect(parseInt(response.info.uptime)).to.be.a('number');
+        expect(parseInt(response.info.uptime)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetNodeStateResp.info has correct *block_height* property', function(){
+        expect(response.info).to.have.property('block_height');
+        expect(response.info.block_height).to.be.a('string');
+        expect(parseInt(response.info.block_height)).to.be.a('number');
+        expect(parseInt(response.info.block_height)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetNodeStateResp.info has correct *block_last_hash* property', function(){
+        expect(response.info).to.have.property('block_last_hash');
+        expect(typeof(response.info.block_last_hash)).to.equal('object');
+        expect(Buffer.isBuffer(response.info.block_last_hash)).to.equal(true);
+    });
+    it('GetNodeStateResp.info has correct *network_id* property', function(){
+        expect(response.info).to.have.property('network_id');
+        expect(response.info.network_id).to.be.a('string');
+    });
+    ```
+
+
 Represents the reply message to node state query
 
 
