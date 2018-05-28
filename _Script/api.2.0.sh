@@ -46,7 +46,7 @@ sed -s -i '1i\\' ${HOME}/API_QRL/_QRL/doc/out1.txt
 #grep -vE "(<a name|# Table|<p|# Prot)" ${HOME}/API_QRL/_QRL/doc/out1.txt > ${HOME}/API_QRL/_QRL/doc/out2.txt
 
 ## converg front matter and API docs file
-cat ${HOME}/API_QRL/front.txt ${HOME}/API_QRL/_QRL/doc/out2.txt > ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md
+cat ${HOME}/API_QRL/front.txt ${HOME}/API_QRL/_QRL/doc/out1.txt > ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md
 
 
 ### copy the index.html.md file we created into the root buld dir for slate

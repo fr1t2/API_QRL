@@ -64,6 +64,8 @@ We need to update this section and give good info for setup and usage.
 </aside>
 
 
+# Addresses
+
 ## AddressAmount
 
 
@@ -145,7 +147,7 @@ We need to update this section and give good info for setup and usage.
 
 
 
-## Block
+# Block
 
 
 
@@ -299,7 +301,7 @@ BlockDataPoint message definition
 
 
 
-## Empty
+# Empty
 Empty message definition
 
 
@@ -308,7 +310,7 @@ Empty message definition
 
 
 
-## EncryptedEphemeralMessage
+# EncryptedEphemeralMessage
 
 
 
@@ -341,7 +343,7 @@ Empty message definition
 
 
 
-## GenesisBalance
+# GenesisBalance
 
 
 
@@ -354,7 +356,7 @@ Empty message definition
 
 
 
-
+# Get
 
 ## GetAddressFromPKReq
 
@@ -706,7 +708,7 @@ Represents the reply message to get statistics about node
 
 
 
-## LRUStateCache
+# LRUStateCache
 
 
 
@@ -715,7 +717,7 @@ Represents the reply message to get statistics about node
 
 
 
-## LatticePK
+# LatticePK
 
 
 
@@ -749,7 +751,7 @@ Represents the reply message to get statistics about node
 
 
 
-## MessageTxnReq
+# MessageTxnReq
 
 
 
@@ -764,7 +766,7 @@ Represents the reply message to get statistics about node
 
 
 
-
+# Node
 
 ## NodeChainState
 
@@ -817,7 +819,7 @@ Represents the reply message to get statistics about node
 
 
 
-
+# P2P
 
 ## P2PAcknowledgement
 
@@ -893,7 +895,7 @@ Represents the reply message to get statistics about node
 
 
 
-
+# PushTransaction
 
 ## PushTransactionReq
 
@@ -925,7 +927,7 @@ Represents the reply message to get statistics about node
 
 
 
-## SlaveTxnReq
+# SlaveTxnReq
 
 
 
@@ -943,7 +945,7 @@ Represents the reply message to get statistics about node
 
 
 
-## StateLoader
+# StateLoader
 
 
 
@@ -974,7 +976,7 @@ Represents the reply message to get statistics about node
 
 
 
-## StoredPeers
+# StoredPeers
 
 
 
@@ -985,7 +987,7 @@ Represents the reply message to get statistics about node
 
 
 
-
+# Tokens
 
 
 ## TokenList
@@ -1038,7 +1040,7 @@ Represents the reply message to get statistics about node
 
 
 
-## Transaction
+# Transaction
 
 
 
@@ -1272,7 +1274,7 @@ Represents the reply message to get statistics about node
 
 
 
-## GetLatestDataReq.Filter
+# GetLatestDataReq.Filter
 
 
 | Name | Number | Description |
@@ -1285,7 +1287,7 @@ Represents the reply message to get statistics about node
 
 
 
-## NodeInfo.State
+# NodeInfo.State
 
 
 | Name | Number | Description |
@@ -1299,7 +1301,7 @@ Represents the reply message to get statistics about node
 
 
 
-## PushTransactionResp.ResponseCode
+# PushTransactionResp.ResponseCode
 
 
 | Name | Number | Description |
@@ -1316,7 +1318,7 @@ Represents the reply message to get statistics about node
 
 
 
-## AdminAPI
+# AdminAPI
 This is a place holder for testing/instrumentation APIs
 
 | Method Name | Request Type | Response Type | Description |
@@ -1324,7 +1326,7 @@ This is a place holder for testing/instrumentation APIs
 
 
 
-## PublicAPI
+# PublicAPI
 This service describes the Public API used by clients (wallet/cli/etc)
 
 | Method Name | Request Type | Response Type | Description |
