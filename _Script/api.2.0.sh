@@ -58,6 +58,10 @@ git add .
 git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_index.html.md file"
 git push
 
+## Move the index.html.md file into the build dir
+rsync -azPv ${HOME}/API_QRL/_QRL/index.html.md ${HOME}/API_QRL/source/
+
+
 ## Build the site
 cd ${HOME}/API_QRL/
 bundle install
