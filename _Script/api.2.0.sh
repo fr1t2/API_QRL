@@ -2,21 +2,12 @@
 #
 #------ github updates --------
 
-## update slate docs from my repo/branch
-#cd ${HOME}/repo/slate
-#git fetch origin
-## Reset the local repo removing any changes before we pull
-## Change the repo to the correcct origin if needed
-#git reset --hard origin/QRL
-#git pull
-
-# Get the files we are interested in
 ## update the QRL repo
-#cd ${HOME}/repo/qrl/
-#git pull
+cd ${HOME}/repo/qrl/
+git pull
 ## update the QRL/integration_tests repo
-#cd ${HOME}/repo/integration_tests
-#git pull
+cd ${HOME}/repo/integration_tests
+git pull
 
 
 ## Move the proto file to our working directory
@@ -47,8 +38,8 @@ sed '/# qrl.proto/,$!d' ${HOME}/API_QRL/_QRL/doc/docs.md > ${HOME}/API_QRL/_QRL/
 echo " Add blank line to beginning of file"
 sed -s -i '1i\\' ${HOME}/API_QRL/_QRL/doc/out1.txt
 
-echo "Remove the a name tag, #Table , <p> and #Prot from file"
-grep -vE "(<a name|# Table|<p|# Prot)" ${HOME}/API_QRL/_QRL/doc/out1.txt > ${HOME}/API_QRL/_QRL/doc/out2.txt
+#echo "Remove the a name tag, #Table , <p> and #Prot from file"
+#grep -vE "(<a name|# Table|<p|# Prot)" ${HOME}/API_QRL/_QRL/doc/out1.txt > ${HOME}/API_QRL/_QRL/doc/out2.txt
 
 ## converg front matter and API docs file
 cat ${HOME}/API_QRL/front.txt ${HOME}/API_QRL/_QRL/doc/out2.txt > ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md
@@ -58,10 +49,10 @@ cat ${HOME}/API_QRL/front.txt ${HOME}/API_QRL/_QRL/doc/out2.txt > ${HOME}/API_QR
 cp ${HOME}/API_QRL/_QRL/doc/QRL_index.html.md ${HOME}/API_QRL/_QRL/
 
 ## Push the docs to the late directory
-#cd ${HOME}/API_QRL
-#git add .
-#git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_index.html.md file"
-#git push
+cd ${HOME}/API_QRL
+git add .
+git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_index.html.md file"
+git push
 
 ## Build the site
 #cd ${HOME}/repo/slate
