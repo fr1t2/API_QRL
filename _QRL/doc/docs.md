@@ -87,6 +87,47 @@
     - [PublicAPI](#qrl.PublicAPI)
   
 
+- [qrlbase.proto](#qrlbase.proto)
+    - [GetNodeInfoReq](#qrl.GetNodeInfoReq)
+    - [GetNodeInfoResp](#qrl.GetNodeInfoResp)
+  
+  
+  
+    - [Base](#qrl.Base)
+  
+
+- [qrllegacy.proto](#qrllegacy.proto)
+    - [BKData](#qrl.BKData)
+    - [FBData](#qrl.FBData)
+    - [LegacyMessage](#qrl.LegacyMessage)
+    - [MRData](#qrl.MRData)
+    - [NoData](#qrl.NoData)
+    - [PBData](#qrl.PBData)
+    - [PLData](#qrl.PLData)
+    - [PONGData](#qrl.PONGData)
+    - [SYNCData](#qrl.SYNCData)
+    - [VEData](#qrl.VEData)
+  
+    - [LegacyMessage.FuncName](#qrl.LegacyMessage.FuncName)
+  
+  
+  
+
+- [qrlmining.proto](#qrlmining.proto)
+    - [GetBlockMiningCompatibleReq](#qrl.GetBlockMiningCompatibleReq)
+    - [GetBlockMiningCompatibleResp](#qrl.GetBlockMiningCompatibleResp)
+    - [GetBlockToMineReq](#qrl.GetBlockToMineReq)
+    - [GetBlockToMineResp](#qrl.GetBlockToMineResp)
+    - [GetLastBlockHeaderReq](#qrl.GetLastBlockHeaderReq)
+    - [GetLastBlockHeaderResp](#qrl.GetLastBlockHeaderResp)
+    - [SubmitMinedBlockReq](#qrl.SubmitMinedBlockReq)
+    - [SubmitMinedBlockResp](#qrl.SubmitMinedBlockResp)
+  
+  
+  
+    - [MiningAPI](#qrl.MiningAPI)
+  
+
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -1385,6 +1426,433 @@ This service describes the Public API used by clients (wallet/cli/etc)
 | GetSlaveTxn | [SlaveTxnReq](#qrl.SlaveTxnReq) | [TransferCoinsResp](#qrl.SlaveTxnReq) |  |
 | GetLatticePublicKeyTxn | [LatticePublicKeyTxnReq](#qrl.LatticePublicKeyTxnReq) | [TransferCoinsResp](#qrl.LatticePublicKeyTxnReq) |  |
 | GetAddressFromPK | [GetAddressFromPKReq](#qrl.GetAddressFromPKReq) | [GetAddressFromPKResp](#qrl.GetAddressFromPKReq) |  |
+
+ 
+
+
+
+<a name="qrlbase.proto"/>
+<p align="right"><a href="#top">Top</a></p>
+
+## qrlbase.proto
+
+
+
+<a name="qrl.GetNodeInfoReq"/>
+
+### GetNodeInfoReq
+
+
+
+
+
+
+
+<a name="qrl.GetNodeInfoResp"/>
+
+### GetNodeInfoResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [string](#string) |  |  |
+| grpcProto | [string](#string) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="qrl.Base"/>
+
+### Base
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetNodeInfo | [GetNodeInfoReq](#qrl.GetNodeInfoReq) | [GetNodeInfoResp](#qrl.GetNodeInfoReq) |  |
+
+ 
+
+
+
+<a name="qrllegacy.proto"/>
+<p align="right"><a href="#top">Top</a></p>
+
+## qrllegacy.proto
+
+
+
+<a name="qrl.BKData"/>
+
+### BKData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| mrData | [MRData](#qrl.MRData) |  |  |
+| block | [Block](#qrl.Block) |  |  |
+
+
+
+
+
+
+<a name="qrl.FBData"/>
+
+### FBData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| index | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name="qrl.LegacyMessage"/>
+
+### LegacyMessage
+Adding old code to refactor while keeping things working
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| func_name | [LegacyMessage.FuncName](#qrl.LegacyMessage.FuncName) |  |  |
+| noData | [NoData](#qrl.NoData) |  |  |
+| veData | [VEData](#qrl.VEData) |  |  |
+| plData | [PLData](#qrl.PLData) |  |  |
+| pongData | [PONGData](#qrl.PONGData) |  |  |
+| mrData | [MRData](#qrl.MRData) |  |  |
+| block | [Block](#qrl.Block) |  |  |
+| fbData | [FBData](#qrl.FBData) |  |  |
+| pbData | [PBData](#qrl.PBData) |  |  |
+| bhData | [BlockHeightData](#qrl.BlockHeightData) |  |  |
+| txData | [Transaction](#qrl.Transaction) |  |  |
+| mtData | [Transaction](#qrl.Transaction) |  |  |
+| tkData | [Transaction](#qrl.Transaction) |  |  |
+| ttData | [Transaction](#qrl.Transaction) |  |  |
+| ltData | [Transaction](#qrl.Transaction) |  |  |
+| slData | [Transaction](#qrl.Transaction) |  |  |
+| ephData | [EncryptedEphemeralMessage](#qrl.EncryptedEphemeralMessage) |  |  |
+| syncData | [SYNCData](#qrl.SYNCData) |  |  |
+| chainStateData | [NodeChainState](#qrl.NodeChainState) |  |  |
+| nodeHeaderHash | [NodeHeaderHash](#qrl.NodeHeaderHash) |  |  |
+| p2pAckData | [P2PAcknowledgement](#qrl.P2PAcknowledgement) |  |  |
+
+
+
+
+
+
+<a name="qrl.MRData"/>
+
+### MRData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| hash | [bytes](#bytes) |  | FIXME: rename this to block_headerhash |
+| type | [LegacyMessage.FuncName](#qrl.LegacyMessage.FuncName) |  | FIXME: type/string what is this |
+| stake_selector | [bytes](#bytes) |  |  |
+| block_number | [uint64](#uint64) |  |  |
+| prev_headerhash | [bytes](#bytes) |  |  |
+| reveal_hash | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="qrl.NoData"/>
+
+### NoData
+
+
+
+
+
+
+
+<a name="qrl.PBData"/>
+
+### PBData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| block | [Block](#qrl.Block) |  |  |
+
+
+
+
+
+
+<a name="qrl.PLData"/>
+
+### PLData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| peer_ips | [string](#string) | repeated |  |
+| public_port | [uint32](#uint32) |  |  |
+
+
+
+
+
+
+<a name="qrl.PONGData"/>
+
+### PONGData
+
+
+
+
+
+
+
+<a name="qrl.SYNCData"/>
+
+### SYNCData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="qrl.VEData"/>
+
+### VEData
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [string](#string) |  |  |
+| genesis_prev_hash | [bytes](#bytes) |  |  |
+| rate_limit | [uint64](#uint64) |  |  |
+
+
+
+
+
+ 
+
+
+<a name="qrl.LegacyMessage.FuncName"/>
+
+### LegacyMessage.FuncName
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VE | 0 | Version |
+| PL | 1 | Peers List |
+| PONG | 2 | Pong TODO: Obsolete |
+| MR | 3 | Message received |
+| SFM | 4 | Send Full Message |
+| BK | 5 | Block |
+| FB | 6 | Fetch request for block |
+| PB | 7 | Push Block |
+| BH | 8 | Block Height |
+| TX | 9 | Transfer Transaction |
+| LT | 10 | Lattice Transaction |
+| EPH | 11 | Ephemeral |
+| MT | 12 | Message Transaction |
+| TK | 13 | Token Transaction |
+| TT | 14 | Transfer Token Transaction |
+| SL | 15 | Slave Transaction |
+| SYNC | 16 | Add into synced list, if the node replies |
+| CHAINSTATE | 17 | Chain State |
+| HEADERHASHES | 18 |  |
+| P2P_ACK | 19 | P2P Acknowledgement |
+
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="qrlmining.proto"/>
+<p align="right"><a href="#top">Top</a></p>
+
+## qrlmining.proto
+
+
+
+<a name="qrl.GetBlockMiningCompatibleReq"/>
+
+### GetBlockMiningCompatibleReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| height | [uint64](#uint64) |  | Used for getlastblockheader and getblockheaderbyheight
+
+if height = 0, this means getlastblockheader |
+
+
+
+
+
+
+<a name="qrl.GetBlockMiningCompatibleResp"/>
+
+### GetBlockMiningCompatibleResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| blockheader | [BlockHeader](#qrl.BlockHeader) |  |  |
+| blockmetadata | [BlockMetaData](#qrl.BlockMetaData) |  |  |
+
+
+
+
+
+
+<a name="qrl.GetBlockToMineReq"/>
+
+### GetBlockToMineReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| wallet_address | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="qrl.GetBlockToMineResp"/>
+
+### GetBlockToMineResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| blocktemplate_blob | [string](#string) |  | max length 112 bytes, otherwise xmr-stak will hiccup |
+| difficulty | [uint64](#uint64) |  | difficulty that the new block should meet |
+| height | [uint64](#uint64) |  |  |
+| reserved_offset | [uint32](#uint32) |  |  |
+
+
+
+
+
+
+<a name="qrl.GetLastBlockHeaderReq"/>
+
+### GetLastBlockHeaderReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| height | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name="qrl.GetLastBlockHeaderResp"/>
+
+### GetLastBlockHeaderResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| difficulty | [uint64](#uint64) |  |  |
+| height | [uint64](#uint64) |  |  |
+| timestamp | [uint64](#uint64) |  |  |
+| reward | [uint64](#uint64) |  |  |
+| hash | [string](#string) |  |  |
+| depth | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name="qrl.SubmitMinedBlockReq"/>
+
+### SubmitMinedBlockReq
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| blob | [bytes](#bytes) |  | blocktemplate_blob with the correct nonce |
+
+
+
+
+
+
+<a name="qrl.SubmitMinedBlockResp"/>
+
+### SubmitMinedBlockResp
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| error | [bool](#bool) |  | It seems there are no special fields for success/error reporting, does gRPC automatically give me something? |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="qrl.MiningAPI"/>
+
+### MiningAPI
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| GetBlockMiningCompatible | [GetBlockMiningCompatibleReq](#qrl.GetBlockMiningCompatibleReq) | [GetBlockMiningCompatibleResp](#qrl.GetBlockMiningCompatibleReq) |  |
+| GetLastBlockHeader | [GetLastBlockHeaderReq](#qrl.GetLastBlockHeaderReq) | [GetLastBlockHeaderResp](#qrl.GetLastBlockHeaderReq) |  |
+| GetBlockToMine | [GetBlockToMineReq](#qrl.GetBlockToMineReq) | [GetBlockToMineResp](#qrl.GetBlockToMineReq) |  |
+| SubmitMinedBlock | [SubmitMinedBlockReq](#qrl.SubmitMinedBlockReq) | [SubmitMinedBlockResp](#qrl.SubmitMinedBlockReq) |  |
 
  
 
