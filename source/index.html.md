@@ -119,7 +119,6 @@ We need to update this section and give good info for setup and usage.
 
 
 
-<a name="qrl.AddressState.TokensEntry"/>
 
 ## AddressState.TokensEntry
 
@@ -135,8 +134,6 @@ We need to update this section and give good info for setup and usage.
 
 
 
-<a name="qrl.Block"/>
-
 # Block
 
 
@@ -151,8 +148,6 @@ We need to update this section and give good info for setup and usage.
 
 
 
-
-<a name="qrl.BlockDataPoint"/>
 
 ## BlockDataPoint
 BlockDataPoint message definition
@@ -174,8 +169,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockExtended"/>
-
 ## BlockExtended
 
 
@@ -192,7 +185,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockHeader"/>
 
 ## BlockHeader
 
@@ -215,7 +207,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockHeaderExtended"/>
 
 ## BlockHeaderExtended
 
@@ -231,7 +222,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockHeightData"/>
 
 ## BlockHeightData
 
@@ -248,7 +238,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockMetaData"/>
 
 ## BlockMetaData
 
@@ -267,7 +256,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockMetaDataList"/>
 
 ## BlockMetaDataList
 
@@ -282,7 +270,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.BlockNumberMapping"/>
 
 ## BlockNumberMapping
 
@@ -298,7 +285,6 @@ BlockDataPoint message definition
 
 
 
-<a name="qrl.Empty"/>
 
 # Empty
 Empty message definition
@@ -308,7 +294,6 @@ Empty message definition
 
 # Ephemeral
 
-<a name="qrl.EncryptedEphemeralMessage"/>
 
 ## EncryptedEphemeralMessage
 
@@ -328,7 +313,6 @@ Empty message definition
 
 
 
-<a name="qrl.EncryptedEphemeralMessage.Channel"/>
 
 ## EncryptedEphemeralMessage.Channel
 
@@ -343,7 +327,6 @@ Empty message definition
 
 
 
-<a name="qrl.GenesisBalance"/>
 
 # GenesisBalance
 
@@ -359,7 +342,6 @@ Empty message definition
 # Get
 
 
-<a name="qrl.GetAddressFromPKReq"/>
 
 ## GetAddressFromPKReq
 
@@ -374,7 +356,6 @@ Empty message definition
 
 
 
-<a name="qrl.GetAddressFromPKResp"/>
 
 ## GetAddressFromPKResp
 
@@ -389,7 +370,6 @@ Empty message definition
 
 
 
-<a name="qrl.GetAddressStateReq"/>
 
 ## GetAddressStateReq
 
@@ -404,7 +384,6 @@ Empty message definition
 
 
 
-<a name="qrl.GetAddressStateResp"/>
 
 ## GetAddressStateResp
 
@@ -419,7 +398,6 @@ Empty message definition
 
 
 
-<a name="qrl.GetBlockReq"/>
 
 ## GetBlockReq
 NOT USED -&gt; RM?
@@ -435,7 +413,6 @@ NOT USED -&gt; RM?
 
 
 
-<a name="qrl.GetBlockResp"/>
 
 ## GetBlockResp
 NOT USED -&gt; RM?
@@ -451,7 +428,6 @@ NOT USED -&gt; RM?
 
 
 
-<a name="qrl.GetKnownPeersReq"/>
 
 ## GetKnownPeersReq
 Represents a query to get known peers
@@ -461,7 +437,6 @@ Represents a query to get known peers
 
 
 
-<a name="qrl.GetKnownPeersResp"/>
 
 ## GetKnownPeersResp
 Represents the reply message to known peers query
@@ -477,7 +452,6 @@ Represents the reply message to known peers query
 
 
 
-<a name="qrl.GetLatestDataReq"/>
 
 ## GetLatestDataReq
 
@@ -494,7 +468,6 @@ Represents the reply message to known peers query
 
 
 
-<a name="qrl.GetLatestDataResp"/>
 
 ## GetLatestDataResp
 
@@ -511,7 +484,6 @@ Represents the reply message to known peers query
 
 
 
-<a name="qrl.GetLocalAddressesReq"/>
 
 ## GetLocalAddressesReq
 
@@ -521,7 +493,6 @@ Represents the reply message to known peers query
 
 
 
-<a name="qrl.GetLocalAddressesResp"/>
 
 ## GetLocalAddressesResp
 
@@ -536,7 +507,6 @@ Represents the reply message to known peers query
 
 
 
-<a name="qrl.GetNodeStateReq"/>
 
 ## GetNodeStateReq
 
@@ -570,7 +540,6 @@ Represents a query to get node state
 
 
 
-<a name="qrl.GetNodeStateResp"/>
 
 ## GetNodeStateResp
 
@@ -634,7 +603,6 @@ Represents the reply message to node state query
 
 
 
-<a name="qrl.GetObjectReq"/>
 
 ## GetObjectReq
 
@@ -649,7 +617,6 @@ Represents the reply message to node state query
 
 
 
-<a name="qrl.GetObjectResp"/>
 
 ## GetObjectResp
 
@@ -667,7 +634,6 @@ Represents the reply message to node state query
 
 
 
-<a name="qrl.GetPeersStatReq"/>
 
 ## GetPeersStatReq
 Represents a query to get connected peers stat
@@ -677,7 +643,6 @@ Represents a query to get connected peers stat
 
 
 
-<a name="qrl.GetPeersStatResp"/>
 
 ## GetPeersStatResp
 Represents the reply message to peers stat query
@@ -692,7 +657,6 @@ Represents the reply message to peers stat query
 
 
 
-<a name="qrl.GetStatsReq"/>
 
 ## GetStatsReq
 Represents a query to get statistics about node
@@ -707,7 +671,6 @@ Represents a query to get statistics about node
 
 
 
-<a name="qrl.GetStatsResp"/>
 
 ## GetStatsResp
 Represents the reply message to get statistics about node
@@ -730,7 +693,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.LRUStateCache"/>
 
 # LRUStateCache
 
@@ -740,7 +702,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.LatticePK"/>
 
 # LatticePK
 
@@ -757,7 +718,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.LatticePublicKeyTxnReq"/>
 
 ## LatticePublicKeyTxnReq
 
@@ -776,8 +736,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.MessageTxnReq"/>
-
 # MessageTxnReq
 
 
@@ -794,7 +752,7 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.NodeChainState"/>
+
 
 # NodeChainState
 
@@ -812,7 +770,6 @@ Represents the reply message to get statistics about node
 
 # Node
 
-<a name="qrl.NodeHeaderHash"/>
 
 ## NodeHeaderHash
 
@@ -828,7 +785,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.NodeInfo"/>
 
 ## NodeInfo
 
@@ -850,7 +806,6 @@ Represents the reply message to get statistics about node
 
 # P2P
 
-<a name="qrl.P2PAcknowledgement"/>
 
 ## P2PAcknowledgement
 
@@ -865,7 +820,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Peer"/>
 
 ## Peer
 
@@ -880,7 +834,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.PeerInfo"/>
 
 ## PeerInfo
 
@@ -899,7 +852,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.PeerStat"/>
 
 ## PeerStat
 
@@ -916,7 +868,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Peers"/>
 
 ## Peers
 
@@ -931,7 +882,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.PushTransactionReq"/>
 
 # PushTransactionReq
 
@@ -946,7 +896,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.PushTransactionResp"/>
 
 ## PushTransactionResp
 
@@ -963,7 +912,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.SlaveTxnReq"/>
 
 # SlaveTxnReq
 
@@ -982,7 +930,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.StateLoader"/>
 
 # StateLoader
 
@@ -1000,7 +947,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.StateObjects"/>
 
 ## StateObjects
 
@@ -1015,7 +961,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.StoredPeers"/>
 
 # StoredPeers
 
@@ -1030,7 +975,6 @@ Represents the reply message to get statistics about node
 
 # Token
 
-<a name="qrl.TokenList"/>
 
 ## TokenList
 
@@ -1045,7 +989,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TokenMetadata"/>
 
 ## TokenMetadata
 
@@ -1061,7 +1004,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TokenTxnReq"/>
 
 ## TokenTxnReq
 
@@ -1083,7 +1025,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction"/>
 
 # Transaction
 
@@ -1110,7 +1051,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.CoinBase"/>
 
 ## Transaction.CoinBase
 
@@ -1126,7 +1066,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.LatticePublicKey"/>
 
 ## Transaction.LatticePublicKey
 
@@ -1142,7 +1081,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.Message"/>
 
 ## Transaction.Message
 
@@ -1157,7 +1095,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.Slave"/>
 
 ## Transaction.Slave
 
@@ -1173,7 +1110,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.Token"/>
 
 ## Transaction.Token
 
@@ -1192,7 +1128,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.Transfer"/>
 
 ## Transaction.Transfer
 
@@ -1208,7 +1143,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.Transaction.TransferToken"/>
 
 ## Transaction.TransferToken
 
@@ -1225,7 +1159,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TransactionCount"/>
 
 ## TransactionCount
 
@@ -1240,7 +1173,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TransactionCount.CountEntry"/>
 
 ## TransactionCount.CountEntry
 
@@ -1256,7 +1188,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TransactionExtended"/>
 
 ## TransactionExtended
 
@@ -1275,7 +1206,6 @@ Represents the reply message to get statistics about node
 
 # Transfer
 
-<a name="qrl.TransferCoinsReq"/>
 
 ## TransferCoinsReq
 
@@ -1294,7 +1224,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TransferCoinsResp"/>
 
 ## TransferCoinsResp
 
@@ -1309,7 +1238,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.TransferTokenTxnReq"/>
 
 ## TransferTokenTxnReq
 
@@ -1331,7 +1259,6 @@ Represents the reply message to get statistics about node
  
 
 
-<a name="qrl.GetLatestDataReq.Filter"/>
 
 # GetLatestDataReq.Filter
 
@@ -1345,7 +1272,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.NodeInfo.State"/>
 
 # NodeInfo.State
 
@@ -1360,7 +1286,6 @@ Represents the reply message to get statistics about node
 
 
 
-<a name="qrl.PushTransactionResp.ResponseCode"/>
 
 # PushTransactionResp.ResponseCode
 
@@ -1378,7 +1303,6 @@ Represents the reply message to get statistics about node
  
 
 
-<a name="qrl.AdminAPI"/>
 
 # AdminAPI
 This is a place holder for testing/instrumentation APIs
@@ -1387,7 +1311,6 @@ This is a place holder for testing/instrumentation APIs
 | ----------- | ------------ | ------------- | ------------|
 
 
-<a name="qrl.PublicAPI"/>
 
 # PublicAPI
 This service describes the Public API used by clients (wallet/cli/etc)
@@ -1414,14 +1337,11 @@ This service describes the Public API used by clients (wallet/cli/etc)
 
 
 
-<a name="qrlbase.proto"/>
-<p align="right"><a href="#top">Top</a></p>
 
 # qrlbase.proto
 
 
 
-<a name="qrl.GetNodeInfoReq"/>
 
 ## GetNodeInfoReq
 
@@ -1431,7 +1351,6 @@ This service describes the Public API used by clients (wallet/cli/etc)
 
 
 
-<a name="qrl.GetNodeInfoResp"/>
 
 ## GetNodeInfoResp
 
@@ -1453,7 +1372,6 @@ This service describes the Public API used by clients (wallet/cli/etc)
  
 
 
-<a name="qrl.Base"/>
 
 ## Base
 
@@ -1466,14 +1384,11 @@ This service describes the Public API used by clients (wallet/cli/etc)
 
 
 
-<a name="qrllegacy.proto"/>
-<p align="right"><a href="#top">Top</a></p>
 
 # qrllegacy.proto
 
 
 
-<a name="qrl.BKData"/>
 
 ## BKData
 
@@ -1489,7 +1404,6 @@ This service describes the Public API used by clients (wallet/cli/etc)
 
 
 
-<a name="qrl.FBData"/>
 
 ## FBData
 
@@ -1504,7 +1418,6 @@ This service describes the Public API used by clients (wallet/cli/etc)
 
 
 
-<a name="qrl.LegacyMessage"/>
 
 ## LegacyMessage
 Adding old code to refactor while keeping things working
@@ -1539,7 +1452,6 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.MRData"/>
 
 ## MRData
 
@@ -1559,7 +1471,6 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.NoData"/>
 
 ## NoData
 
@@ -1569,7 +1480,6 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.PBData"/>
 
 ## PBData
 
@@ -1584,7 +1494,6 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.PLData"/>
 
 ## PLData
 
@@ -1600,12 +1509,10 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.PONGData"/>
 
 ## PONGData
 
 
-<a name="qrl.SYNCData"/>
 
 ## SYNCData
 
@@ -1617,7 +1524,6 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.VEData"/>
 
 ## VEData
 
@@ -1631,7 +1537,6 @@ Adding old code to refactor while keeping things working
 
 
 
-<a name="qrl.LegacyMessage.FuncName"/>
 
 ## LegacyMessage.FuncName
 
@@ -1659,17 +1564,10 @@ Adding old code to refactor while keeping things working
 | HEADERHASHES | 18 |  |
 | P2P_ACK | 19 | P2P Acknowledgement |
 
-<a name="qrlmining.proto"/>
-<p align="right"><a href="#top">Top</a></p>
-
 # qrlmining.proto
 
 
-
-<a name="qrl.GetBlockMiningCompatibleReq"/>
-
 ## GetBlockMiningCompatibleReq
-
 
 
 | Field | Type | Label | Description |
@@ -1681,12 +1579,7 @@ if height = 0, this means getlastblockheader |
 
 
 
-
-
-<a name="qrl.GetBlockMiningCompatibleResp"/>
-
 ## GetBlockMiningCompatibleResp
-
 
 
 | Field | Type | Label | Description |
@@ -1699,7 +1592,6 @@ if height = 0, this means getlastblockheader |
 
 
 
-<a name="qrl.GetBlockToMineReq"/>
 
 ## GetBlockToMineReq
 
@@ -1714,7 +1606,6 @@ if height = 0, this means getlastblockheader |
 
 
 
-<a name="qrl.GetBlockToMineResp"/>
 
 ## GetBlockToMineResp
 
@@ -1732,7 +1623,6 @@ if height = 0, this means getlastblockheader |
 
 
 
-<a name="qrl.GetLastBlockHeaderReq"/>
 
 ## GetLastBlockHeaderReq
 
@@ -1741,7 +1631,6 @@ if height = 0, this means getlastblockheader |
 | height | [uint64](#uint64) |  |  |
 
 
-<a name="qrl.GetLastBlockHeaderResp"/>
 
 ## GetLastBlockHeaderResp
 
@@ -1757,7 +1646,6 @@ if height = 0, this means getlastblockheader |
 | depth | [uint64](#uint64) |  |  |
 
 
-<a name="qrl.SubmitMinedBlockReq"/>
 
 ## SubmitMinedBlockReq
 
@@ -1765,7 +1653,6 @@ if height = 0, this means getlastblockheader |
 | ----- | ---- | ----- | ----------- |
 | blob | [bytes](#bytes) |  | blocktemplate_blob with the correct nonce |
 
-<a name="qrl.SubmitMinedBlockResp"/>
 
 ## SubmitMinedBlockResp
 
@@ -1773,7 +1660,6 @@ if height = 0, this means getlastblockheader |
 | ----- | ---- | ----- | ----------- |
 | error | [bool](#bool) |  | It seems there are no special fields for success/error reporting, does gRPC automatically give me something? |
 
-<a name="qrl.MiningAPI"/>
 
 ## MiningAPI
 
