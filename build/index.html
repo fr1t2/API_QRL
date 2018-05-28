@@ -220,6 +220,35 @@
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#qrl-protocol-documentation" class="toc-h1 toc-link" data-title="qrl-protocol-documentation">QRL Protocol Documentation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#functions" class="toc-h2 toc-link" data-title="functions">Functions</a>
+                  </li>
+                  <li>
+                    <a href="#getqrlclient" class="toc-h2 toc-link" data-title="getqrlclient">getQRLClient()</a>
+                  </li>
+                  <li>
+                    <a href="#stringtobytes" class="toc-h2 toc-link" data-title="stringtobytes">stringToBytes</a>
+                  </li>
+                  <li>
+                    <a href="#binarytobytes" class="toc-h2 toc-link" data-title="binarytobytes">binaryToBytes</a>
+                  </li>
+                  <li>
+                    <a href="#tobuffer" class="toc-h2 toc-link" data-title="tobuffer">toBuffer()</a>
+                  </li>
+                  <li>
+                    <a href="#connecting-to-the-api" class="toc-h2 toc-link" data-title="connecting-to-the-api">Connecting to the API</a>
+                  </li>
+                  <li>
+                    <a href="#concatenatetypedarrays" class="toc-h2 toc-link" data-title="concatenatetypedarrays">concatenateTypedArrays()</a>
+                  </li>
+                  <li>
+                    <a href="#tobigendianuint64bytesunsigned" class="toc-h2 toc-link" data-title="tobigendianuint64bytesunsigned">toBigendianUint64BytesUnsigned()</a>
+                  </li>
+                  <li>
+                    <a href="#initiating-test-wallets" class="toc-h2 toc-link" data-title="initiating-test-wallets">Initiating Test Wallets</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#addresses" class="toc-h1 toc-link" data-title="addresses">Addresses</a>
@@ -642,6 +671,220 @@
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
+<h2 id='functions'>Functions</h2>
+<p>Here are some required functions to make the code examples work. </p>
+<h2 id='getqrlclient'>getQRLClient()</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">async</span> <span class="kd">function</span> <span class="nx">getQRLClient</span><span class="p">(</span><span class="nx">nodeAddr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="nx">resolve</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">remoteProto</span> <span class="o">=</span> <span class="nx">fetchRemoteProto</span><span class="p">(</span><span class="nx">nodeAddr</span><span class="p">);</span>
+        <span class="nx">remoteProto</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">remoteProto</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">remoteProto</span><span class="p">.</span><span class="nx">qrl</span><span class="p">.</span><span class="nx">PublicAPI</span><span class="p">(</span><span class="nx">nodeAddr</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">credentials</span><span class="p">.</span><span class="nx">createInsecure</span><span class="p">());</span>
+            <span class="nx">resolve</span><span class="p">(</span><span class="nx">client</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to  give tips on usage </p>
+</blockquote>
+<h2 id='stringtobytes'>stringToBytes</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// StringToBytes from QRLLIB</span>
+<span class="nx">stringToBytes</span> <span class="o">=</span> <span class="p">(</span><span class="nx">convertMe</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Convert String to Binary First</span>
+  <span class="kr">const</span> <span class="nx">thisBinary</span> <span class="o">=</span> <span class="nx">qrllib</span><span class="p">.</span><span class="nx">hstr2bin</span><span class="p">(</span><span class="nx">convertMe</span><span class="p">)</span>
+  <span class="c1">// Now convert to Bytes</span>
+  <span class="k">return</span> <span class="nx">binaryToBytes</span><span class="p">(</span><span class="nx">thisBinary</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to  give tips on usage </p>
+</blockquote>
+<h2 id='binarytobytes'>binaryToBytes</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// Convert Binary object to Bytes</span>
+<span class="nx">binaryToBytes</span> <span class="o">=</span> <span class="p">(</span><span class="nx">convertMe</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Convert Binary to Bytes</span>
+  <span class="kr">const</span> <span class="nx">thisBytes</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Uint8Array</span><span class="p">(</span><span class="nx">convertMe</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">convertMe</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">thisBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">convertMe</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">thisBytes</span>
+<span class="p">}</span>
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to give tips on usage </p>
+</blockquote>
+<h2 id='tobuffer'>toBuffer()</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">toBuffer</span><span class="p">(</span><span class="nx">ab</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">ab</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">buffer</span>
+<span class="p">}</span>
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to give tips on usage </p>
+</blockquote>
+<h2 id='connecting-to-the-api'>Connecting to the API</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// Connecting to the API</span>
+<span class="c1">// TODO: The IP should change to something running locally for tests_old</span>
+<span class="c1">// let qrlClient = getQRLClient('104.251.219.215:9009');</span>
+<span class="kd">let</span> <span class="nx">qrlClient</span> <span class="o">=</span> <span class="nx">getQRLClient</span><span class="p">(</span><span class="s1">'127.0.0.1:10002'</span><span class="p">);</span>
+<span class="c1">// let qrlClient = getQRLClient('127.0.0.1:9009');</span>
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to  give tips on usage </p>
+</blockquote>
+<h2 id='concatenatetypedarrays'>concatenateTypedArrays()</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// Concatenates multiple typed arrays into one.</span>
+<span class="nx">concatenateTypedArrays</span> <span class="o">=</span> <span class="p">(</span><span class="nx">resultConstructor</span><span class="p">,</span> <span class="p">...</span><span class="nx">arrays</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">totalLength</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">arr</span> <span class="nx">of</span> <span class="nx">arrays</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">totalLength</span> <span class="o">+=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">resultConstructor</span><span class="p">(</span><span class="nx">totalLength</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">arr</span> <span class="nx">of</span> <span class="nx">arrays</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">offset</span><span class="p">)</span>
+      <span class="nx">offset</span> <span class="o">+=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to  give tips on usage </p>
+</blockquote>
+<h2 id='tobigendianuint64bytesunsigned'>toBigendianUint64BytesUnsigned()</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// Take input and convert to unsigned uint64 bigendian bytes</span>
+<span class="nx">toBigendianUint64BytesUnsigned</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="nx">input</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">input</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kr">const</span> <span class="nx">byteArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+  <span class="k">for</span> <span class="p">(</span> <span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">byteArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span> <span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="kr">byte</span> <span class="o">=</span> <span class="nx">input</span> <span class="o">&amp;</span> <span class="mh">0xff</span>
+    <span class="nx">byteArray</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="kr">byte</span>
+    <span class="nx">input</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span> <span class="o">-</span> <span class="kr">byte</span><span class="p">)</span> <span class="o">/</span> <span class="mi">256</span>
+  <span class="p">}</span>
+
+  <span class="nx">byteArray</span><span class="p">.</span><span class="nx">reverse</span><span class="p">()</span>
+
+  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Uint8Array</span><span class="p">(</span><span class="nx">byteArray</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to  give tips on usage </p>
+</blockquote>
+<h2 id='initiating-test-wallets'>Initiating Test Wallets</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// initiating the test wallets to use</span>
+<span class="kd">var</span> <span class="nx">testfromaddress</span> <span class="o">=</span> <span class="s1">'0105006d232eb403a0248f9d4c0476c06a7d7a1d0425420df2dd915b7fb46cf7da132699c27b93'</span>
+<span class="kd">var</span> <span class="nx">testfromxmsspk</span> <span class="o">=</span> <span class="s1">'0105007e41c011a706c8edd8d1a2f18d558d14311917cd549b3edae07775b12d6640ef35ea0d4dd47fc36e2bc6d5aa5f6ef7582fcf6b8a564ea0ff3af3b42af05cbac9'</span>
+<span class="kd">var</span> <span class="nx">testtoaddress</span> <span class="o">=</span> <span class="s1">'0105003e32fcbcdcaf09485272f1aa1c1e318daaa8cf7cd03bacf7cfceeddf936bb88efe1e4d21'</span>
+<span class="kd">var</span> <span class="nx">testfromaddress_bytes</span> <span class="o">=</span> <span class="nx">stringToBytes</span><span class="p">(</span><span class="nx">testfromaddress</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">testfromxmsspk_bytes</span> <span class="o">=</span> <span class="nx">stringToBytes</span><span class="p">(</span><span class="nx">testfromxmsspk</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">testtoaddress_bytes</span> <span class="o">=</span> <span class="nx">stringToBytes</span><span class="p">(</span><span class="nx">testtoaddress</span><span class="p">);</span>
+
+</code></pre>
+<p>Description of the function here.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+<blockquote>
+<p>Need to  give tips on usage </p>
+</blockquote>
 <h1 id='addresses'>Addresses</h1><h2 id='addresslist'>AddressList</h2>
 <table><thead>
 <tr>
