@@ -90,11 +90,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to  give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to  give tips on usage 
 
 
 ## stringToBytes
@@ -117,11 +118,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to  give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to  give tips on usage 
 
 
 ## binaryToBytes
@@ -146,11 +148,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to give tips on usage 
 
 
 ## toBuffer()
@@ -170,11 +173,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to give tips on usage 
 
 
 
@@ -196,11 +200,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to  give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to  give tips on usage 
 
 
 
@@ -232,11 +237,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to  give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to  give tips on usage 
 
 
 
@@ -274,13 +280,11 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to  give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
-
-> Need to  give tips on usage 
-
-
 
 
 
@@ -308,11 +312,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+> Need to  give tips on usage 
+
 <aside class="notice">
 We need to update this section and give good info for setup and usage.
 </aside>
 
-> Need to  give tips on usage 
 
 
 
