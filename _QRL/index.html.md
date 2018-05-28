@@ -370,8 +370,6 @@ describe('GetObject - AddressState', function() {
 This function will give multiple responses
 
 
-result property
-
 ```javascript
     it('GetObjectResp has correct *result* property', function(){
         expect(response).to.have.property('result');
@@ -380,7 +378,16 @@ result property
     });
 ```
 
-found property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## found property
 
 ```javascript
     it('GetObjectResp has correct *found* property', function(){
@@ -389,7 +396,17 @@ found property
     });
 ```
 
-transaction property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## transaction property
+
 
 ```javascript    
     it('GetObjectResp has correct *transaction* property', function(){
@@ -398,7 +415,16 @@ transaction property
     });
 ```
 
- block_extended property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## block_extended property
 
 ```javascript    
     it('GetObjectResp has correct *block_extended* property', function(){
@@ -407,7 +433,17 @@ transaction property
     });
 ```
 
-address_state property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+
+## address_state property
 
 ```javascript    
     it('GetObjectResp has correct *address_state* property', function(){
@@ -416,7 +452,17 @@ address_state property
     });
 ```
 
-AdressState.address property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## AdressState.address property
+
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.address* property', function(){
@@ -426,7 +472,17 @@ AdressState.address property
     });
 ```
 
-AdressState.balance property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## AdressState.balance property
+
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.balance* property', function(){
@@ -436,7 +492,17 @@ AdressState.balance property
     });
 ```
 
-AdressState.nonce property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## AdressState.nonce property
+
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.nonce* property', function(){
@@ -446,7 +512,16 @@ AdressState.nonce property
     });
 ```
 
-AdressState.ots_counter property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## AdressState.ots_counter property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.ots_counter* property', function(){
@@ -456,7 +531,15 @@ AdressState.ots_counter property
     });
 ```
 
-AdressState.ots_bitfield property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+## AdressState.ots_bitfield property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.ots_bitfield* property', function(){
@@ -465,7 +548,16 @@ AdressState.ots_bitfield property
     });
 ```
 
- AdressState.transaction_hashes property
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
+
+## AdressState.transaction_hashes property
 
 ```javascript    
     it('GetObjectResp has correct *AdressState.transaction_hashes* property', function(){
@@ -473,6 +565,15 @@ AdressState.ots_bitfield property
         response.address_state.transaction_hashes.forEach(i => expect(i.length).to.equal(32));
     });
 ```
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+result property
+
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
