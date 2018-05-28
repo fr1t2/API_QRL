@@ -342,7 +342,79 @@ We need to update this section and give good info for setup and usage.
 
 ## AddressState
 
+```javascript
+// Test for GetObject for AddressState
+describe('GetObject - AddressState', function() {
+    // example wallet address
+    let response;
+    // testaddress = stringToBytes('01050048a8b31d8dda8a25c5c0d02994fe87e54032ba67910657ade9114d0cdff2eeb5f6285446');
+    // call API
+    before(function() {
+        return new Promise((resolve) => {
+            qrlClient.then( function (qrlClient) {
+                qrlClient.getObject({query : testfromaddress_bytes }, (err, res) => {
+                    if (err){
+                        console.log("Error: ", err.message);
+                        return;
+                    }
+                    response = res;
+                    resolve();
+                });
+            });
+        });
+    });
+    it('GetObjectResp has correct *result* property', function(){
+        expect(response).to.have.property('result');
+        expect(response.result).to.be.a('string');
+        expect(response.result).to.equal('address_state');
+    });
+    it('GetObjectResp has correct *found* property', function(){
+        expect(response).to.have.property('found');
+        expect(response.found).to.equal(true);
+    });
+    it('GetObjectResp has correct *transaction* property', function(){
+        expect(response).to.have.property('transaction');
+        expect(response.transaction).to.equal(null);
+    });
+    it('GetObjectResp has correct *block_extended* property', function(){
+        expect(response).to.have.property('block_extended');
+        expect(response.block_extended).to.equal(null);
+    });
+    it('GetObjectResp has correct *address_state* property', function(){
+        expect(response).to.have.property('address_state');
+        expect(response.address_state).to.have.all.keys(['address','balance','nonce','ots_bitfield','transaction_hashes','tokens','latticePK_list','slave_pks_access_type','ots_counter']);
+    });
+    it('GetObjectResp has correct *AdressState.address* property', function(){
+        expect(Buffer.isBuffer(response.address_state.address)).to.equal(true);
+        expect(response.address_state.address.length).to.equal(39);
+        // check the first three octets values are correct
+    });
+    it('GetObjectResp has correct *AdressState.balance* property', function(){
+        expect(response.address_state.balance).to.be.a('string');
+        expect(parseInt(response.address_state.balance)).to.be.a('number');
+        expect(parseInt(response.address_state.balance)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetObjectResp has correct *AdressState.nonce* property', function(){
+        expect(response.address_state.nonce).to.be.a('string');
+        expect(parseInt(response.address_state.nonce)).to.be.a('number');
+        expect(parseInt(response.address_state.nonce)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetObjectResp has correct *AdressState.ots_counter* property', function(){
+        expect(response.address_state.ots_counter).to.be.a('string');
+        expect(parseInt(response.address_state.ots_counter)).to.be.a('number');
+        expect(parseInt(response.address_state.ots_counter)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetObjectResp has correct *AdressState.ots_bitfield* property', function(){
+        response.address_state.ots_bitfield.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
+        response.address_state.ots_bitfield.forEach(i => expect(i.length).to.equal(1));
+    });
+    it('GetObjectResp has correct *AdressState.transaction_hashes* property', function(){
+        response.address_state.transaction_hashes.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
+        response.address_state.transaction_hashes.forEach(i => expect(i.length).to.equal(32));
+    });
 
+});
+```
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
@@ -1007,23 +1079,7 @@ describe('GetNodeState', function() {
             });
         });
     });
-    
-});
-```
-
-Represents a query to get node state
-
-
-
-
-
-
-
-## GetNodeStateResp
-
-
-```javascript
-it('GetNodeStateResp has NodeInfo *info* property', function(){
+    it('GetNodeStateResp has NodeInfo *info* property', function(){
         expect(response).to.have.property('info');
     });
     it('GetNodeStateResp.info has correct *state* property', function(){
@@ -1066,6 +1122,22 @@ it('GetNodeStateResp has NodeInfo *info* property', function(){
         expect(response.info).to.have.property('network_id');
         expect(response.info.network_id).to.be.a('string');
     });
+});
+```
+
+Represents a query to get node state
+
+
+
+
+
+
+
+## GetNodeStateResp
+
+
+```javascript
+
 ```
 
 
@@ -1086,159 +1158,12 @@ Represents the reply message to node state query
 
 
 
-### AddressState
-
-```javascript
-// Test for GetObject for AddressState
-describe('GetObject - AddressState', function() {
-    // example wallet address
-    let response;
-    // testaddress = stringToBytes('01050048a8b31d8dda8a25c5c0d02994fe87e54032ba67910657ade9114d0cdff2eeb5f6285446');
-    // call API
-    before(function() {
-        return new Promise((resolve) => {
-            qrlClient.then( function (qrlClient) {
-                qrlClient.getObject({query : testfromaddress_bytes }, (err, res) => {
-                    if (err){
-                        console.log("Error: ", err.message);
-                        return;
-                    }
-                    response = res;
-                    resolve();
-                });
-            });
-        });
-    });
-    it('GetObjectResp has correct *result* property', function(){
-        expect(response).to.have.property('result');
-        expect(response.result).to.be.a('string');
-        expect(response.result).to.equal('address_state');
-    });
-    it('GetObjectResp has correct *found* property', function(){
-        expect(response).to.have.property('found');
-        expect(response.found).to.equal(true);
-    });
-    it('GetObjectResp has correct *transaction* property', function(){
-        expect(response).to.have.property('transaction');
-        expect(response.transaction).to.equal(null);
-    });
-    it('GetObjectResp has correct *block_extended* property', function(){
-        expect(response).to.have.property('block_extended');
-        expect(response.block_extended).to.equal(null);
-    });
-    it('GetObjectResp has correct *address_state* property', function(){
-        expect(response).to.have.property('address_state');
-        expect(response.address_state).to.have.all.keys(['address','balance','nonce','ots_bitfield','transaction_hashes','tokens','latticePK_list','slave_pks_access_type','ots_counter']);
-    });
-    it('GetObjectResp has correct *AdressState.address* property', function(){
-        expect(Buffer.isBuffer(response.address_state.address)).to.equal(true);
-        expect(response.address_state.address.length).to.equal(39);
-        // check the first three octets values are correct
-    });
-    it('GetObjectResp has correct *AdressState.balance* property', function(){
-        expect(response.address_state.balance).to.be.a('string');
-        expect(parseInt(response.address_state.balance)).to.be.a('number');
-        expect(parseInt(response.address_state.balance)).to.be.below(18446744073709551617); // uint64
-    });
-    it('GetObjectResp has correct *AdressState.nonce* property', function(){
-        expect(response.address_state.nonce).to.be.a('string');
-        expect(parseInt(response.address_state.nonce)).to.be.a('number');
-        expect(parseInt(response.address_state.nonce)).to.be.below(18446744073709551617); // uint64
-    });
-    it('GetObjectResp has correct *AdressState.ots_counter* property', function(){
-        expect(response.address_state.ots_counter).to.be.a('string');
-        expect(parseInt(response.address_state.ots_counter)).to.be.a('number');
-        expect(parseInt(response.address_state.ots_counter)).to.be.below(18446744073709551617); // uint64
-    });
-    it('GetObjectResp has correct *AdressState.ots_bitfield* property', function(){
-        response.address_state.ots_bitfield.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
-        response.address_state.ots_bitfield.forEach(i => expect(i.length).to.equal(1));
-    });
-    it('GetObjectResp has correct *AdressState.transaction_hashes* property', function(){
-        response.address_state.transaction_hashes.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
-        response.address_state.transaction_hashes.forEach(i => expect(i.length).to.equal(32));
-    });
-
-});
-```
 
 
 
-### TransactionExtended
 
 
-```javascript
-// Test for GetObject for TransactionExtended
-describe('GetObject - TransactionExtended', function() {
-    // example wallet address
-    let response;
-    testtx = stringToBytes('010600e62ec20b7397949a132f7e6efa80ba3fe1e94af646e50035f1db1a5985734fff11284143');
-    // call API
-    before(function() {
-        return new Promise((resolve) => {
-            qrlClient.then( function (qrlClient) {
-                qrlClient.getObject({query : testtx }, (err, res) => {
-                    if (err){
-                        console.log("Error: ", err.message);
-                        return;
-                    }
-                    response = res;
-                    resolve();
-                });
-            });
-        });
-    });
 
-    it('GetObjectResp has correct *result* property', function(){
-        expect(response).to.have.property('result');
-        expect(response.result).to.equal('address_state');
-    });
-    it('GetObjectResp has correct *found* property', function(){
-        expect(response).to.have.property('found');
-        expect(response.found).to.equal(true);
-    });
-    it('GetObjectResp has correct *transaction* property', function(){
-        expect(response).to.have.property('transaction');
-        expect(response.transaction).to.equal(null);
-    });
-    it('GetObjectResp has correct *block_extended* property', function(){
-        expect(response).to.have.property('block_extended');
-        expect(response.block_extended).to.equal(null);
-    });
-    it('GetObjectResp has correct *address_state* property', function(){
-        expect(response).to.have.property('address_state');
-        expect(response.address_state).to.have.all.keys(['address','balance','nonce','ots_bitfield','transaction_hashes','tokens','latticePK_list','slave_pks_access_type','ots_counter']);
-    });
-    it('GetObjectResp has correct *AdressState.address* property', function(){
-        expect(Buffer.isBuffer(response.address_state.address)).to.equal(true);
-        expect(response.address_state.address.length).to.equal(39);
-        // check the first three octets values are correct
-    });
-    it('GetObjectResp has correct *AdressState.balance* property', function(){
-        expect(response.address_state.balance).to.be.a('string');
-        expect(parseInt(response.address_state.balance)).to.be.a('number');
-        expect(parseInt(response.address_state.balance)).to.be.below(18446744073709551617); // uint64
-    });
-    it('GetObjectResp has correct *AdressState.nonce* property', function(){
-        expect(response.address_state.nonce).to.be.a('string');
-        expect(parseInt(response.address_state.nonce)).to.be.a('number');
-        expect(parseInt(response.address_state.nonce)).to.be.below(18446744073709551617); // uint64
-    });
-    it('GetObjectResp has correct *AdressState.ots_counter* property', function(){
-        expect(response.address_state.ots_counter).to.be.a('string');
-        expect(parseInt(response.address_state.ots_counter)).to.be.a('number');
-        expect(parseInt(response.address_state.ots_counter)).to.be.below(18446744073709551617); // uint64
-    });
-    it('GetObjectResp has correct *AdressState.ots_bitfield* property', function(){
-        response.address_state.ots_bitfield.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
-        response.address_state.ots_bitfield.forEach(i => expect(i.length).to.equal(1));
-    });
-    it('GetObjectResp has correct *AdressState.transaction_hashes* property', function(){
-        response.address_state.transaction_hashes.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
-        response.address_state.transaction_hashes.forEach(i => expect(i.length).to.equal(32));
-    });
-});
-```
 
 
 
@@ -1308,27 +1233,7 @@ describe('GetStats', function() {
             });
         });
     });
- });
-
-```
-
-
-Represents a query to get statistics about node
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| include_timeseries | [bool](#bool) |  | Boolean to define if block timeseries should be included in reply or not |
-
-
-
-
-
-
-
-## GetStatsResp
-
-```javascript
+    
 it('GetStatsResp has NodeInfo *node_info* property', function(){
         expect(response).to.have.property('node_info');
     });
@@ -1455,6 +1360,27 @@ it('GetStatsResp has NodeInfo *node_info* property', function(){
         response.block_timeseries.forEach(i => expect(Buffer.isBuffer(i.header_hash_prev)).to.equal(true));
         response.block_timeseries.forEach(i => expect(i.header_hash_prev.length).to.equal(32));
     });
+ });
+
+```
+
+
+Represents a query to get statistics about node
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| include_timeseries | [bool](#bool) |  | Boolean to define if block timeseries should be included in reply or not |
+
+
+
+
+
+
+
+## GetStatsResp
+
+```javascript
 ```
 Represents the reply message to get statistics about node
 
@@ -2192,7 +2118,78 @@ describe('GetTokenTxn', function() {
 
 ## TransactionExtended
 
+```javascript
+// Test for GetObject for TransactionExtended
+describe('GetObject - TransactionExtended', function() {
+    // example wallet address
+    let response;
+    testtx = stringToBytes('010600e62ec20b7397949a132f7e6efa80ba3fe1e94af646e50035f1db1a5985734fff11284143');
+    // call API
+    before(function() {
+        return new Promise((resolve) => {
+            qrlClient.then( function (qrlClient) {
+                qrlClient.getObject({query : testtx }, (err, res) => {
+                    if (err){
+                        console.log("Error: ", err.message);
+                        return;
+                    }
+                    response = res;
+                    resolve();
+                });
+            });
+        });
+    });
 
+    it('GetObjectResp has correct *result* property', function(){
+        expect(response).to.have.property('result');
+        expect(response.result).to.equal('address_state');
+    });
+    it('GetObjectResp has correct *found* property', function(){
+        expect(response).to.have.property('found');
+        expect(response.found).to.equal(true);
+    });
+    it('GetObjectResp has correct *transaction* property', function(){
+        expect(response).to.have.property('transaction');
+        expect(response.transaction).to.equal(null);
+    });
+    it('GetObjectResp has correct *block_extended* property', function(){
+        expect(response).to.have.property('block_extended');
+        expect(response.block_extended).to.equal(null);
+    });
+    it('GetObjectResp has correct *address_state* property', function(){
+        expect(response).to.have.property('address_state');
+        expect(response.address_state).to.have.all.keys(['address','balance','nonce','ots_bitfield','transaction_hashes','tokens','latticePK_list','slave_pks_access_type','ots_counter']);
+    });
+    it('GetObjectResp has correct *AdressState.address* property', function(){
+        expect(Buffer.isBuffer(response.address_state.address)).to.equal(true);
+        expect(response.address_state.address.length).to.equal(39);
+        // check the first three octets values are correct
+    });
+    it('GetObjectResp has correct *AdressState.balance* property', function(){
+        expect(response.address_state.balance).to.be.a('string');
+        expect(parseInt(response.address_state.balance)).to.be.a('number');
+        expect(parseInt(response.address_state.balance)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetObjectResp has correct *AdressState.nonce* property', function(){
+        expect(response.address_state.nonce).to.be.a('string');
+        expect(parseInt(response.address_state.nonce)).to.be.a('number');
+        expect(parseInt(response.address_state.nonce)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetObjectResp has correct *AdressState.ots_counter* property', function(){
+        expect(response.address_state.ots_counter).to.be.a('string');
+        expect(parseInt(response.address_state.ots_counter)).to.be.a('number');
+        expect(parseInt(response.address_state.ots_counter)).to.be.below(18446744073709551617); // uint64
+    });
+    it('GetObjectResp has correct *AdressState.ots_bitfield* property', function(){
+        response.address_state.ots_bitfield.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
+        response.address_state.ots_bitfield.forEach(i => expect(i.length).to.equal(1));
+    });
+    it('GetObjectResp has correct *AdressState.transaction_hashes* property', function(){
+        response.address_state.transaction_hashes.forEach(i => expect(Buffer.isBuffer(i)).to.equal(true));
+        response.address_state.transaction_hashes.forEach(i => expect(i.length).to.equal(32));
+    });
+});
+```
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
