@@ -600,7 +600,7 @@ it('GetNodeStateResp has NodeInfo *info* property', function(){
         expect(response.info).to.have.property('network_id');
         expect(response.info.network_id).to.be.a('string');
     });
-    ```
+```
 
 
 Represents the reply message to node state query
