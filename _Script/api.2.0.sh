@@ -59,13 +59,12 @@ git commit -m "AutoUpdating QRL_index.html.md, see the changes in the /_QRL/QRL_
 git push
 
 ## Build the site
-#cd ${HOME}/repo/slate
-#bundle install
+cd ${HOME}/API_QRL/
+bundle install
 ## Bundle the slate site up into static files
-#bundle exec middleman build --clean 
+bundle exec middleman build --clean 
 
-#cp -r ${HOME}/repo/slate/build/* ${HOME}/site
+cp -r ${HOME}/API_QRL/build/* ${HOME}/manual_site
 
 ## Move the site into the webroot and assign permissions
 ## Se webRootMove.sh
-
