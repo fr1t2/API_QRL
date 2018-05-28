@@ -493,7 +493,7 @@
                     <a href="#transactioncount-countentry" class="toc-h2 toc-link" data-title="transactioncount-countentry">TransactionCount.CountEntry</a>
                   </li>
                   <li>
-                    <a href="#transactionextended-2" class="toc-h2 toc-link" data-title="transactionextended">TransactionExtended</a>
+                    <a href="#transactionextended" class="toc-h2 toc-link" data-title="transactionextended">TransactionExtended</a>
                   </li>
               </ul>
           </li>
@@ -901,7 +901,78 @@ We need to update this section and give good info for setup and usage.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='addressstate'>AddressState</h2>
+<h2 id='addressstate'>AddressState</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// Test for GetObject for AddressState</span>
+<span class="nx">describe</span><span class="p">(</span><span class="s1">'GetObject - AddressState'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// example wallet address</span>
+    <span class="kd">let</span> <span class="nx">response</span><span class="p">;</span>
+    <span class="c1">// testaddress = stringToBytes('01050048a8b31d8dda8a25c5c0d02994fe87e54032ba67910657ade9114d0cdff2eeb5f6285446');</span>
+    <span class="c1">// call API</span>
+    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">qrlClient</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">getObject</span><span class="p">({</span><span class="na">query</span> <span class="p">:</span> <span class="nx">testfromaddress_bytes</span> <span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error: "</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="nx">response</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+                    <span class="nx">resolve</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *result* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'result'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *found* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'found'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">found</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *transaction* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'transaction'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">transaction</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *block_extended* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'block_extended'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">block_extended</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *address_state* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">all</span><span class="p">.</span><span class="nx">keys</span><span class="p">([</span><span class="s1">'address'</span><span class="p">,</span><span class="s1">'balance'</span><span class="p">,</span><span class="s1">'nonce'</span><span class="p">,</span><span class="s1">'ots_bitfield'</span><span class="p">,</span><span class="s1">'transaction_hashes'</span><span class="p">,</span><span class="s1">'tokens'</span><span class="p">,</span><span class="s1">'latticePK_list'</span><span class="p">,</span><span class="s1">'slave_pks_access_type'</span><span class="p">,</span><span class="s1">'ots_counter'</span><span class="p">]);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.address* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">39</span><span class="p">);</span>
+        <span class="c1">// check the first three octets values are correct</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.balance* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.nonce* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_counter* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_bitfield* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.transaction_hashes* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">32</span><span class="p">));</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1845,11 +1916,7 @@ We need to update this section and give good info for setup and usage.
             <span class="p">});</span>
         <span class="p">});</span>
     <span class="p">});</span>
-
-<span class="p">});</span>
-</code></pre>
-<p>Represents a query to get node state</p>
-<h2 id='getnodestateresp'>GetNodeStateResp</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">it</span><span class="p">(</span><span class="s1">'GetNodeStateResp has NodeInfo *info* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetNodeStateResp has NodeInfo *info* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'info'</span><span class="p">);</span>
     <span class="p">});</span>
     <span class="nx">it</span><span class="p">(</span><span class="s1">'GetNodeStateResp.info has correct *state* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
@@ -1892,6 +1959,10 @@ We need to update this section and give good info for setup and usage.
         <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">info</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'network_id'</span><span class="p">);</span>
         <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">info</span><span class="p">.</span><span class="nx">network_id</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
     <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+<p>Represents a query to get node state</p>
+<h2 id='getnodestateresp'>GetNodeStateResp</h2><pre class="highlight javascript tab-javascript"><code>
 </code></pre>
 <p>Represents the reply message to node state query</p>
 
@@ -1910,148 +1981,7 @@ We need to update this section and give good info for setup and usage.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='getobjectreq'>GetObjectReq</h2><h3 id='addressstate-2'>AddressState</h3><pre class="highlight javascript tab-javascript"><code><span class="c1">// Test for GetObject for AddressState</span>
-<span class="nx">describe</span><span class="p">(</span><span class="s1">'GetObject - AddressState'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// example wallet address</span>
-    <span class="kd">let</span> <span class="nx">response</span><span class="p">;</span>
-    <span class="c1">// testaddress = stringToBytes('01050048a8b31d8dda8a25c5c0d02994fe87e54032ba67910657ade9114d0cdff2eeb5f6285446');</span>
-    <span class="c1">// call API</span>
-    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">qrlClient</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">getObject</span><span class="p">({</span><span class="na">query</span> <span class="p">:</span> <span class="nx">testfromaddress_bytes</span> <span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error: "</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-                        <span class="k">return</span><span class="p">;</span>
-                    <span class="p">}</span>
-                    <span class="nx">response</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
-                    <span class="nx">resolve</span><span class="p">();</span>
-                <span class="p">});</span>
-            <span class="p">});</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *result* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'result'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *found* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'found'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">found</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *transaction* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'transaction'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">transaction</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *block_extended* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'block_extended'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">block_extended</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *address_state* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">all</span><span class="p">.</span><span class="nx">keys</span><span class="p">([</span><span class="s1">'address'</span><span class="p">,</span><span class="s1">'balance'</span><span class="p">,</span><span class="s1">'nonce'</span><span class="p">,</span><span class="s1">'ots_bitfield'</span><span class="p">,</span><span class="s1">'transaction_hashes'</span><span class="p">,</span><span class="s1">'tokens'</span><span class="p">,</span><span class="s1">'latticePK_list'</span><span class="p">,</span><span class="s1">'slave_pks_access_type'</span><span class="p">,</span><span class="s1">'ots_counter'</span><span class="p">]);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.address* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">39</span><span class="p">);</span>
-        <span class="c1">// check the first three octets values are correct</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.balance* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.nonce* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_counter* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_bitfield* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.transaction_hashes* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">32</span><span class="p">));</span>
-    <span class="p">});</span>
-
-<span class="p">});</span>
-</code></pre><h3 id='transactionextended'>TransactionExtended</h3><pre class="highlight javascript tab-javascript"><code><span class="c1">// Test for GetObject for TransactionExtended</span>
-<span class="nx">describe</span><span class="p">(</span><span class="s1">'GetObject - TransactionExtended'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// example wallet address</span>
-    <span class="kd">let</span> <span class="nx">response</span><span class="p">;</span>
-    <span class="nx">testtx</span> <span class="o">=</span> <span class="nx">stringToBytes</span><span class="p">(</span><span class="s1">'010600e62ec20b7397949a132f7e6efa80ba3fe1e94af646e50035f1db1a5985734fff11284143'</span><span class="p">);</span>
-    <span class="c1">// call API</span>
-    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">qrlClient</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">getObject</span><span class="p">({</span><span class="na">query</span> <span class="p">:</span> <span class="nx">testtx</span> <span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error: "</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-                        <span class="k">return</span><span class="p">;</span>
-                    <span class="p">}</span>
-                    <span class="nx">response</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
-                    <span class="nx">resolve</span><span class="p">();</span>
-                <span class="p">});</span>
-            <span class="p">});</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *result* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'result'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *found* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'found'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">found</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *transaction* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'transaction'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">transaction</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *block_extended* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'block_extended'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">block_extended</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *address_state* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">all</span><span class="p">.</span><span class="nx">keys</span><span class="p">([</span><span class="s1">'address'</span><span class="p">,</span><span class="s1">'balance'</span><span class="p">,</span><span class="s1">'nonce'</span><span class="p">,</span><span class="s1">'ots_bitfield'</span><span class="p">,</span><span class="s1">'transaction_hashes'</span><span class="p">,</span><span class="s1">'tokens'</span><span class="p">,</span><span class="s1">'latticePK_list'</span><span class="p">,</span><span class="s1">'slave_pks_access_type'</span><span class="p">,</span><span class="s1">'ots_counter'</span><span class="p">]);</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.address* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">39</span><span class="p">);</span>
-        <span class="c1">// check the first three octets values are correct</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.balance* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.nonce* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_counter* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_bitfield* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.transaction_hashes* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
-        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">32</span><span class="p">));</span>
-    <span class="p">});</span>
-<span class="p">});</span>
-</code></pre>
+<h2 id='getobjectreq'>GetObjectReq</h2>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -2159,27 +2089,8 @@ We need to update this section and give good info for setup and usage.
             <span class="p">});</span>
         <span class="p">});</span>
     <span class="p">});</span>
- <span class="p">});</span>
 
-</code></pre>
-<p>Represents a query to get statistics about node</p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_timeseries</td>
-<td><a href="#bool">bool</a></td>
-<td></td>
-<td>Boolean to define if block timeseries should be included in reply or not</td>
-</tr>
-</tbody></table>
-<h2 id='getstatsresp'>GetStatsResp</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">it</span><span class="p">(</span><span class="s1">'GetStatsResp has NodeInfo *node_info* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">'GetStatsResp has NodeInfo *node_info* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'node_info'</span><span class="p">);</span>
     <span class="p">});</span>
     <span class="nx">it</span><span class="p">(</span><span class="s1">'GetStatsResp.node_info has correct *version* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
@@ -2305,7 +2216,27 @@ We need to update this section and give good info for setup and usage.
         <span class="nx">response</span><span class="p">.</span><span class="nx">block_timeseries</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">header_hash_prev</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
         <span class="nx">response</span><span class="p">.</span><span class="nx">block_timeseries</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">header_hash_prev</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">32</span><span class="p">));</span>
     <span class="p">});</span>
+ <span class="p">});</span>
+
 </code></pre>
+<p>Represents a query to get statistics about node</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include_timeseries</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>Boolean to define if block timeseries should be included in reply or not</td>
+</tr>
+</tbody></table>
+<h2 id='getstatsresp'>GetStatsResp</h2><pre class="highlight javascript tab-javascript"><code></code></pre>
 <p>Represents the reply message to get statistics about node</p>
 
 <table><thead>
@@ -3460,7 +3391,77 @@ We need to update this section and give good info for setup and usage.
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='transactionextended-2'>TransactionExtended</h2>
+<h2 id='transactionextended'>TransactionExtended</h2><pre class="highlight javascript tab-javascript"><code><span class="c1">// Test for GetObject for TransactionExtended</span>
+<span class="nx">describe</span><span class="p">(</span><span class="s1">'GetObject - TransactionExtended'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// example wallet address</span>
+    <span class="kd">let</span> <span class="nx">response</span><span class="p">;</span>
+    <span class="nx">testtx</span> <span class="o">=</span> <span class="nx">stringToBytes</span><span class="p">(</span><span class="s1">'010600e62ec20b7397949a132f7e6efa80ba3fe1e94af646e50035f1db1a5985734fff11284143'</span><span class="p">);</span>
+    <span class="c1">// call API</span>
+    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">qrlClient</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">qrlClient</span><span class="p">.</span><span class="nx">getObject</span><span class="p">({</span><span class="na">query</span> <span class="p">:</span> <span class="nx">testtx</span> <span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Error: "</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+                        <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="nx">response</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+                    <span class="nx">resolve</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *result* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'result'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *found* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'found'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">found</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *transaction* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'transaction'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">transaction</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *block_extended* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'block_extended'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">block_extended</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *address_state* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span><span class="s1">'address_state'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">all</span><span class="p">.</span><span class="nx">keys</span><span class="p">([</span><span class="s1">'address'</span><span class="p">,</span><span class="s1">'balance'</span><span class="p">,</span><span class="s1">'nonce'</span><span class="p">,</span><span class="s1">'ots_bitfield'</span><span class="p">,</span><span class="s1">'transaction_hashes'</span><span class="p">,</span><span class="s1">'tokens'</span><span class="p">,</span><span class="s1">'latticePK_list'</span><span class="p">,</span><span class="s1">'slave_pks_access_type'</span><span class="p">,</span><span class="s1">'ots_counter'</span><span class="p">]);</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.address* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">39</span><span class="p">);</span>
+        <span class="c1">// check the first three octets values are correct</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.balance* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">balance</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.nonce* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">nonce</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_counter* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">a</span><span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_counter</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">below</span><span class="p">(</span><span class="mi">18446744073709551617</span><span class="p">);</span> <span class="c1">// uint64</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.ots_bitfield* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">ots_bitfield</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">'GetObjectResp has correct *AdressState.transaction_hashes* property'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">isBuffer</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">address_state</span><span class="p">.</span><span class="nx">transaction_hashes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">i</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">32</span><span class="p">));</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
 <table><thead>
 <tr>
 <th>Field</th>
