@@ -68,7 +68,6 @@ We need to update this section and give good info for setup and usage.
 <a name="qrl.AddressList"/>
 
 
-# Addresses
 
 ## AddressList
 
