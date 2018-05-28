@@ -63,6 +63,258 @@ This is a work in progress and a such will change over time. Please make sure yo
 We need to update this section and give good info for setup and usage.
 </aside>
 
+## Functions
+
+Here are some required functions to make the code examples work. 
+
+
+## getQRLClient()
+```javascript
+async function getQRLClient(nodeAddr) {
+    return new Promise(resolve => {
+        const remoteProto = fetchRemoteProto(nodeAddr);
+        remoteProto.then(function (remoteProto) {
+            let client = new remoteProto.qrl.PublicAPI(nodeAddr, grpc.credentials.createInsecure());
+            resolve(client);
+        });
+    });
+}
+```
+
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to  give tips on usage 
+
+
+## stringToBytes
+
+```javascript
+// StringToBytes from QRLLIB
+stringToBytes = (convertMe) => {
+  // Convert String to Binary First
+  const thisBinary = qrllib.hstr2bin(convertMe)
+  // Now convert to Bytes
+  return binaryToBytes(thisBinary)
+}
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to  give tips on usage 
+
+
+## binaryToBytes
+
+```javascript
+// Convert Binary object to Bytes
+binaryToBytes = (convertMe) => {
+  // Convert Binary to Bytes
+  const thisBytes = new Uint8Array(convertMe.size())
+  for (let i = 0; i < convertMe.size(); i += 1) {
+    thisBytes[i] = convertMe.get(i)
+  }
+  return thisBytes
+}
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to give tips on usage 
+
+
+## toBuffer()
+
+```javascript
+function toBuffer(ab) {
+  const buffer = Buffer.from(ab)
+  return buffer
+}
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to give tips on usage 
+
+
+
+## Connecting to the API
+
+```javascript
+// Connecting to the API
+// TODO: The IP should change to something running locally for tests_old
+// let qrlClient = getQRLClient('104.251.219.215:9009');
+let qrlClient = getQRLClient('127.0.0.1:10002');
+// let qrlClient = getQRLClient('127.0.0.1:9009');
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to  give tips on usage 
+
+
+
+
+## concatenateTypedArrays()
+
+```javascript
+// Concatenates multiple typed arrays into one.
+concatenateTypedArrays = (resultConstructor, ...arrays) => {
+    let totalLength = 0
+    for (let arr of arrays) {
+      totalLength += arr.length
+    }
+    let result = new resultConstructor(totalLength)
+    let offset = 0
+    for (let arr of arrays) {
+      result.set(arr, offset)
+      offset += arr.length
+    }
+    return result
+}
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to  give tips on usage 
+
+
+
+
+## toBigendianUint64BytesUnsigned()
+
+```javascript
+// Take input and convert to unsigned uint64 bigendian bytes
+toBigendianUint64BytesUnsigned = (input) => {
+  if(!Number.isInteger(input)) {
+    input = parseInt(input)
+  }
+
+  const byteArray = [0, 0, 0, 0, 0, 0, 0, 0]
+
+  for ( let index = 0; index < byteArray.length; index ++ ) {
+    const byte = input & 0xff
+    byteArray[index] = byte
+    input = (input - byte) / 256
+  }
+
+  byteArray.reverse()
+
+  const result = new Uint8Array(byteArray)
+  return result
+}
+
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to  give tips on usage 
+
+
+
+
+
+
+
+
+## Initiating Test Wallets
+
+```javascript
+// initiating the test wallets to use
+var testfromaddress = '0105006d232eb403a0248f9d4c0476c06a7d7a1d0425420df2dd915b7fb46cf7da132699c27b93'
+var testfromxmsspk = '0105007e41c011a706c8edd8d1a2f18d558d14311917cd549b3edae07775b12d6640ef35ea0d4dd47fc36e2bc6d5aa5f6ef7582fcf6b8a564ea0ff3af3b42af05cbac9'
+var testtoaddress = '0105003e32fcbcdcaf09485272f1aa1c1e318daaa8cf7cd03bacf7cfceeddf936bb88efe1e4d21'
+var testfromaddress_bytes = stringToBytes(testfromaddress);
+var testfromxmsspk_bytes = stringToBytes(testfromxmsspk);
+var testtoaddress_bytes = stringToBytes(testtoaddress);
+
+```
+Description of the function here.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<aside class="notice">
+We need to update this section and give good info for setup and usage.
+</aside>
+
+> Need to  give tips on usage 
+
+
 
 
 
