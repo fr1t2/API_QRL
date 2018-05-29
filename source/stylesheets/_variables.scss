@@ -29,10 +29,10 @@ $code-bg: #151d3a !default;
 $code-annotation-bg: #191D1F !default;
 $nav-subitem-bg: #151d3a !default;
 $nav-active-bg: #dc255d !default;
-$nav-active-parent-bg: #a50b5e !default; // parent links of the current section
+$nav-active-parent-bg: #151d3a !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #151d3a !default;
-$lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
+$lang-select-active-bg: $nav-active-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #d8d8d8 !default;
 $aside-notice-bg: #eaa221 !default;
