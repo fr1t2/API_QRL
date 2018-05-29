@@ -59,9 +59,25 @@ The QRL Protocol documentation is intended to lighten the on-boarding process an
 
 This is a work in progress and a such will change over time. Please make sure you are referencing the correct version of code and docs.
 
+here are the various aside options
+
 <aside class="notice">
-We need to update this section and give good info for setup and usage.
+Nitice! We need to update this section and give good info for setup and usage.
 </aside>
+
+
+<aside class="warning">
+Warning! We need to update this section and give good info for setup and usage.
+</aside>
+
+<aside class="success">
+Success! We need to update this section and give good info for setup and usage.
+</aside>
+
+
+
+
+
 
 ## Functions
 
