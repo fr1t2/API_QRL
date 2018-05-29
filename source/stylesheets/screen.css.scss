@@ -468,6 +468,7 @@ html, body {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
+    color: $aside-notice-color;
     line-height: 1.6;
 
     &.warning {
@@ -477,6 +478,7 @@ html, body {
 
     &.success {
       background-color: $aside-success-bg;
+      color: aside-success-color;
     }
   }
 
