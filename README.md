@@ -1,8 +1,10 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa7491c51d88454f9a0942c6098f5625)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fr1t2/API_QRL&amp;utm_campaign=Badge_Grade)
-<p align="center">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+
+
+QRL API Documentation
+--------------------------
+
+---
 
 <p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
 
